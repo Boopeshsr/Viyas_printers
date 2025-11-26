@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Viyas Printers</title>
+    <style>
+        /* Variables for easier color management */
+        :root {
+            --primary-blue: #010475; /* A darker, richer blue */
+            --light-grey-bg: #F8F4EC; /* Soft off-white/beige */
+            --accent-green: #29A816; /* Muted green */
+            --text-dark: #333;
+            --text-light: #f8f9fa;
+        }
+
+        body {
+    margin: 0;
+    padding: 100px 0 0 0; /* Added padding-top: 100px; */
+    background-color: var(--light-grey-bg);
+    font-family: 'Poppins', sans-serif; /* Default body font */
+    color: var(--text-dark);
+}
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Headings font */
+            color: var(--primary-blue);
+        }
+
+        /* Navbar specifics */
+        .navbar {
+            background-color: var(--light-grey-bg) !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,.05); /* Subtle shadow for depth */
+        }
+
+        .navbar-brand img {
+            height: 80px; /* Slightly reduced logo size */
+            width: auto;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-blue) !important;
+            transition: color 0.3s ease-in-out; /* Smooth transition for hover */
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-green) !important;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 25px; /* Slightly more padding */
+            border-radius: 50px;
+            text-decoration: none;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-style: normal; /* Remove italic for buttons */
+            border: 1px solid var(--primary-blue); /* Add a border */
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+        .btn:hover {
+            background-color: transparent; /* Transparent background on hover */
+            color: var(--primary-blue); /* Change text color to primary blue */
+            border-color: var(--primary-blue); /* Maintain border color */
+        }
+        
+        /* Hero section specific styles */
+        .hero-section h1 {
+            color: dodgerblue; /* Keeping your specific blue for main title */
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section h2 {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-section p {
+            color: var(--accent-green);
+            line-height: 1.6;
+            max-width: 900px; /* Constrain text width for readability */
+            margin: 0 auto 1.5rem auto; /* Center paragraph and add bottom margin */
+            font-size: 1.5rem; /* Larger font size for hero text */
+        }
+        
+        /* About Us section */
+        .about-us-section {
+            background-color: var(--light-grey-bg);
+            padding: 5rem 0; /* More vertical padding */
+        }
+
+        .about-us-section h1 {
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+        }
+
+        .about-us-section p {
+            color: var(--primary-blue);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.3rem; /* Slightly larger text */
+        }
+
+        /* Products section */
+        .products-section {
+            padding: 4rem 0;
+            background-color: #fff; /* White background for product cards section */
+        }
+
+        .products-section h1 {
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .products-section .card {
+            border: none; /* Remove default card border */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08); /* Softer shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+            overflow: hidden; /* Ensures rounded corners on image */
+            margin-bottom: 20px; /* Space between cards in different rows */
+        }
+
+        .products-section .card:hover {
+            transform: translateY(-5px); /* Lift card slightly on hover */
+            box-shadow: 0 8px 20px rgba(0,0,0,.15); /* More pronounced shadow on hover */
+        }
+
+        .products-section .card img {
+            width: 100%; /* Ensure image fills card width */
+            height: 250px; /* Consistent height for product images */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .products-section .card-title {
+            padding: 15px 0;
+            font-size: 1.5rem; /* Larger title for product cards */
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            background-color: var(--light-grey-bg);
+        }
+
+        .contact-section h4 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .contact-section .form-control {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-section .form-label {
+            font-weight: 500;
+            margin-bottom: .5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-section iframe {
+            border-radius: 8px;
+            width: 100%; /* Ensure map fills its container */
+            min-height: 350px; /* Minimum height for map */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue); /* Dark blue footer */
+            color: var(--text-light);
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .footer-info .col-md-4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem; /* Space between rows of contact info */
+        }
+
+        .footer-icon {
+            height: 35px; /* Slightly larger icons */
+            width: auto;
+            margin-right: 15px;
+            filter: invert(1); /* Make icons white if they are dark */
+        }
+
+        footer h5 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-light); /* Ensure text color is light */
+        }
+
+        .copyright-section {
+            background-color: #000252; /* Even darker blue for copyright */
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        .copyright-section p {
+            margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .hero-section h1 {
+                font-size: 2.5rem !important;
+            }
+            .hero-section h2 {
+                font-size: 1.8rem !important;
+            }
+            .hero-section p {
+                font-size: 1rem !important;
+                padding: 0 1rem;
+            }
+            .about-us-section p {
+                font-size: 1rem !important;
+                padding: 0 1rem;
+            }
+            .products-section .card {
+                margin-bottom: 1.5rem;
+            }
+            .contact-section .col-md-6:last-child {
+                margin-top: 2rem; /* Add space between form and map on small screens */
+            }
+            .footer-info .col-md-4 {
+                flex-direction: column; /* Stack icon and text on small screens */
+                text-align: center;
+            }
+            .footer-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container-fluid px-md-5">
+                <a class="navbar-brand" href="#home">
+                    <img src="Images/viyas_logo-removebg-preview.png" alt="Viyas Logo" class="img-fluid">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto"> 
+                        <li class="nav-item">
+                            <a class="nav-link active fs-4 mx-3" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 mx-3" href="#aboutus">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 mx-3" href="#products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-4 mx-3" href="#contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section text-center py-5" style="background-color: var(--light-grey-bg);" id="home">
+            <div class="container">
+                <h1 class="display-1 mb-3">Viyas Printers</h1>
+                <h2 class="display-3 mb-4">Passionate about Printing</h2>
+                <p class="fs-2 fs-lg-3 fs-md-4 fs-sm-5 mb-0 px-md-5">We specialize in bringing your ideas to life through high-quality screen printing. Whether you're looking for custom apparel for your brand, creative invitations for an event, or personalized gifts, our expert team is dedicated to delivering vibrant, durable prints that make a lasting impression. Let us help you stand out with custom designs tailored precisely to your needs.</p> 
+                <button class="btn btn-lg mt-4" type="button" data-bs-toggle="modal" data-bs-target="#ordermodal">For Orders</button>
+            </div>
+        </section>
+
+        <div class="modal fade" id="ordermodal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderModalLabel">Order Here</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="orderForm"> <div class="mb-3">
+                                <label for="Custname" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter your Name" id="Custname" name="Custname" required> </div>
+                            <div class="mb-3">
+                                <label for="Custcontact" class="form-label">Contact</label>
+                                <input type="text" class="form-control" placeholder="Enter your contact number" id="Custcontact" name="Custcontact" required> </div>
+                            <div class="mb-3">
+                                <label for="Product" class="form-label">Products</label>
+                                <select name="Product" id="Product" class="form-select" required> <option value="">Select a Product</option> <option value="Visiting Cards">Visiting Cards</option>
+                                    <option value="Batteries">Batteries</option>
+                                    <option value="Letter Heads">Letter Heads</option>
+                                    <option value="Invitations">Invitations</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Orderdesc" class="form-label">Order Description</label>
+                                <textarea class="form-control" placeholder="Enter the order description" id="Orderdesc" name="Orderdesc" rows="5" required></textarea> </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Order</button> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="about-us-section text-center" id="aboutus">
+            <div class="container">
+                <h1 class="mt-0 mb-4">About Us</h1>
+                <p class="fs-3 fs-lg-4 fs-md-5 fs-sm-6 px-md-5">With over 20 years of expertise in screen printing, Viyas Printers is your trusted partner for all your printing needs. We excel at producing sharp, vibrant prints on everything from beautiful wedding invitations and professional visiting cards to official letterheads, impactful event notices, and versatile stickers. Our unique strength lies in our specialized capabilities for printing directly onto UPS units and other battery types. Your satisfaction is our highest priority, and we are committed to providing top-notch printing services at affordable rates."</p>
+            </div> 
+        </section>
+
+        <section class="products-section bg-white py-5" id="products">
+            <div class="container">
+                <h1 class="mt-2 mb-4">Products</h1>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"> <div class="col">
+                        <div class="card">
+                            <img src="https://picsum.photos/id/237/400/250" alt="UPS Batteries" class="img-fluid">
+                            <h3 class="card-title text-center">UPS Batteries</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://picsum.photos/id/160/400/250" alt="Invitations" class="img-fluid">
+                            <h3 class="card-title text-center">Invitations</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://picsum.photos/id/157/400/250" alt="Letter Heads" class="img-fluid">
+                            <h3 class="card-title text-center">Letter heads</h3>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://picsum.photos/id/145/400/250" alt="Visiting Card" class="img-fluid">
+                            <h3 class="card-title text-center">Visiting card</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section py-5" id="contactus">
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-md-6 mb-4 mb-md-0"> 
+                        <h4>Send us a message</h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter your name" id="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact" class="form-label">Contact</label> 
+                                <input type="text" class="form-control" placeholder="Your Contact info" id="contact">
+                            </div>
+                            <div class="mb-3">
+                                <label for="msg" class="form-label">Message</label> 
+                                <textarea name="msg" id="msg" class="form-control" placeholder="Your message" rows="6"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Send</button>
+                            <button type="reset" class="btn btn-secondary mt-3 ms-2">Reset</button> 
+                        </form>
+                    </div>
+                    <div class="col-md-6"> 
+                        <h4>Locate Us</h4>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d322.39480180742027!2d77.72514796277353!3d11.340515020624112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f40d0f223d9%3A0x6e0ffa6ada952f26!2sNMS%20Compound%2C%20Erode%20Fort%2C%20Erode%2C%20Tamil%20Nadu%20638001!5e0!3m2!1sen!2sin!4v1751554694885!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-info py-4"> 
+            <div class="row justify-content-center">
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <img src="Images/png-transparent-gmail-new-logo-icon-removebg-preview.png" alt="G-mail" class="footer-icon">
+                    <h5>eroraghav@gmail.com</h5> 
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <img src="Images/png-transparent-computer-icons-call-icon-cdr-text-copyright-removebg-preview.png" alt="Call" class="footer-icon">
+                    <h5>7373732233 | 9344455515</h5> 
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <img src="Images/transparent-instagram-logo-business-card-2-removebg-preview.png" alt="Instagram" class="footer-icon">
+                    <h5>raghav.avan1818</h5> 
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid copyright-section text-center"> 
+            <p>Copyrights &copy; All rights reserved 2025</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        // Get the order form element
+        const orderForm = document.getElementById('orderForm');
+
+        // Add an event listener for form submission
+        orderForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission (page reload)
+
+            // Collect form data
+            const formData = new FormData(this); // 'this' refers to the form element
+            
+            // You can convert FormData to a plain object or JSON if your backend expects JSON
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // For demonstration, let's just log the data and simulate a successful response
+            console.log('Order data collected:', data);
+
+            // Hide the modal after submission (regardless of success/failure for now)
+            const orderModal = bootstrap.Modal.getInstance(document.getElementById('ordermodal'));
+            if (orderModal) {
+                orderModal.hide();
+            }
+
+            // --- THIS IS WHERE YOU'LL SEND DATA TO YOUR SERVER ---
+            try {
+                // Replace 'process_order.php' with the actual path to your server-side script
+                // If your server expects JSON, use 'body: JSON.stringify(data)' and 'Content-Type': 'application/json'
+                const response = await fetch('http://localhost/viyas_printers/code.php', { // Or '/api/orders' if using Node.js/Python framework
+                    method: 'POST',
+                    body: formData // Use formData directly for PHP which expects form-urlencoded or multipart
+                    // If your server expects JSON, uncomment these lines:
+                    // headers: {
+                    //     'Content-Type': 'application/json'
+                    // },
+                    // body: JSON.stringify(data)
+                });
+
+                const result = await response.json(); // Assuming your server responds with JSON
+
+                if (response.ok && result.success) {
+                    alert('Your order has been placed successfully! We will contact you soon.');
+                    orderForm.reset(); // Clear the form fields
+                } else {
+                    alert('There was an error placing your order: ' + (result.message || 'Unknown error.'));
+                }
+            } catch (error) {
+                console.error('Error submitting order:', error);
+                alert('An unexpected error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
