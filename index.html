@@ -421,59 +421,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>
-        // Get the order form element
-        const orderForm = document.getElementById('orderForm');
-
-        // Add an event listener for form submission
-        orderForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission (page reload)
-
-            // Collect form data
-            const formData = new FormData(this); // 'this' refers to the form element
-            
-            // You can convert FormData to a plain object or JSON if your backend expects JSON
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            // For demonstration, let's just log the data and simulate a successful response
-            console.log('Order data collected:', data);
-
-            // Hide the modal after submission (regardless of success/failure for now)
-            const orderModal = bootstrap.Modal.getInstance(document.getElementById('ordermodal'));
-            if (orderModal) {
-                orderModal.hide();
-            }
-
-            // --- THIS IS WHERE YOU'LL SEND DATA TO YOUR SERVER ---
-            try {
-                // Replace 'process_order.php' with the actual path to your server-side script
-                // If your server expects JSON, use 'body: JSON.stringify(data)' and 'Content-Type': 'application/json'
-                const response = await fetch('http://localhost/viyas_printers/code.php', { // Or '/api/orders' if using Node.js/Python framework
-                    method: 'POST',
-                    body: formData // Use formData directly for PHP which expects form-urlencoded or multipart
-                    // If your server expects JSON, uncomment these lines:
-                    // headers: {
-                    //     'Content-Type': 'application/json'
-                    // },
-                    // body: JSON.stringify(data)
-                });
-
-                const result = await response.json(); // Assuming your server responds with JSON
-
-                if (response.ok && result.success) {
-                    alert('Your order has been placed successfully! We will contact you soon.');
-                    orderForm.reset(); // Clear the form fields
-                } else {
-                    alert('There was an error placing your order: ' + (result.message || 'Unknown error.'));
-                }
-            } catch (error) {
-                console.error('Error submitting order:', error);
-                alert('An unexpected error occurred. Please try again.');
-            }
-        });
-    </script>
+    <script src="code.js"></script>
 </body>
 </html>
